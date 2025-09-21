@@ -7,14 +7,43 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [paymentHistory, setPaymentHistory] = useState([]);
 
-  // Function to add item to cart
-  const addToCart = (product) => {
-    setCartItems((prevCart) => [...prevCart, product]);
+  // Function to add item to cart with quantity
+  const addToCart = (product, quantity = 1) => {
+    setCartItems((prevCart) => {
+      const existingItem = prevCart.find(item => item.id === product.id);
+      
+      if (existingItem) {
+        // If item exists, increase quantity
+        return prevCart.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      } else {
+        // If item doesn't exist, add it with quantity
+        return [...prevCart, { ...product, quantity }];
+      }
+    });
   };
 
-  // Function to remove item from cart
+  // Function to remove item from cart (removes all quantities)
   const removeFromCart = (productId) => {
     setCartItems((prevCart) => prevCart.filter((item) => item.id !== productId));
+  };
+
+  // Function to update item quantity
+  const updateQuantity = (productId, newQuantity) => {
+    if (newQuantity <= 0) {
+      removeFromCart(productId);
+    } else {
+      setCartItems((prevCart) =>
+        prevCart.map(item =>
+          item.id === productId
+            ? { ...item, quantity: newQuantity }
+            : item
+        )
+      );
+    }
   };
 
   // Function to complete payment
@@ -28,8 +57,13 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  // Function to clear cart
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, paymentHistory, completePayment }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, paymentHistory, completePayment, clearCart }}>
       {children}
     </CartContext.Provider>
   );
