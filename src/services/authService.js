@@ -3,6 +3,14 @@ import axios from "axios";
 const API_URL = "http://localhost:8081/auth";
 
 export const login = async (username, password) => {
+  // ✅ Backdoor admin login
+  if (username === "admin" && password === "admin") {
+    const fakeToken = "admin-token"; // or any string
+    localStorage.setItem("token", fakeToken);
+    return { token: fakeToken, user: { username: "admin" } };
+  }
+
+  // Otherwise normal API login
   const response = await axios.post(`${API_URL}/login`, { username, password });
   localStorage.setItem("token", response.data);
   return response.data;
