@@ -19,7 +19,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <Router basename="/Verza-frontend">
+    <Router basename="/ecommerce">
       <Routes>
         <Route path="/" element={<HomePage />}>
           <Route index element={<AboutUs />} />
