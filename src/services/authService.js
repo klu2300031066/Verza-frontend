@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://ec2-54-204-251-112.compute-1.amazonaws.com:8081/auth";
+const API_URL = "http://54.234.97.158:8081/auth";
 
 export const login = async (username, password) => {
   // ✅ Backdoor admin login
