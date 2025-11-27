@@ -19,7 +19,7 @@ import * as Components from './components';
 
 function App() {
   return (
-    <Router basename="/ecommerce">
+    <Router basename="/">
       <Routes>
         <Route path="/" element={<Components.HomePage />}>
           <Route index element={<Components.AboutUs />} />
