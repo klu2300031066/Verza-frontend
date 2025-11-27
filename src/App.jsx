@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import './App.css';
+import { useState } from 'react'
+import './App.css'
 import Login from './components/Login';
 import Signup from './components/Signup';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -9,17 +9,20 @@ import Computers from './components/Computers';
 import Mobiles from './components/Mobiles';
 import Laptops from './components/Laptops';
 import Pendrives from './components/Pendrives';
-import Home from './components/Home';
-import ProductPage from './components/ProductPage';
+import Home from './components/Home'
+import ProductPage from './components/ProductPage'
 import Cart from './components/Cart';
 import Payment from './components/Payment';
 import Orders from './components/Orders';
 
-function App() {
-  const [count, setCount] = useState(0);
 
+
+function App() {
+  const [count, setCount] = useState(0)
+  
   return (
-    <Router basename="/"> {/* Serve at root */}
+    <>
+    <Router>
       <Routes>
         <Route path="/" element={<HomePage />}>
           <Route index element={<AboutUs />} />
@@ -36,11 +39,10 @@ function App() {
           <Route path="payment" element={<Payment />} />
           <Route path="orders" element={<Orders />} />
         </Route>
-        {/* Optional: catch-all route for 404 */}
-        <Route path="*" element={<HomePage />} />
       </Routes>
     </Router>
-  );
+    </>
+  )
 }
 
-export default App;
+export default App
