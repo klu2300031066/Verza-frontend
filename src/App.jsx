@@ -15,32 +15,31 @@ import Cart from './components/Cart';
 import Payment from './components/Payment';
 import Orders from './components/Orders';
 
+import * as Components from './components';
+
 function App() {
-  const [count, setCount] = useState(0)
-  
   return (
-    <>
-      <Router basename="/ecommerce">  {/* <-- add this */}
-        <Routes>
-          <Route path="/" element={<HomePage />}>
-            <Route index element={<AboutUs />} />
-            <Route path="home" element={<Home />} />
-            <Route path="about-us" element={<AboutUs />} />
-            <Route path="computers" element={<Computers />} />
-            <Route path="mobiles" element={<Mobiles />} />
-            <Route path="laptops" element={<Laptops />} />
-            <Route path="pendrives" element={<Pendrives />} />
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="productpage" element={<ProductPage />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="payment" element={<Payment />} />
-            <Route path="orders" element={<Orders />} />
-          </Route>
-        </Routes>
-      </Router>
-    </>
-  )
+    <Router basename="/ecommerce">
+      <Routes>
+        <Route path="/" element={<Components.HomePage />}>
+          <Route index element={<Components.AboutUs />} />
+          <Route path="home" element={<Components.Home />} />
+          <Route path="about-us" element={<Components.AboutUs />} />
+          <Route path="computers" element={<Components.Computers />} />
+          <Route path="mobiles" element={<Components.Mobiles />} />
+          <Route path="laptops" element={<Components.Laptops />} />
+          <Route path="pendrives" element={<Components.Pendrives />} />
+          <Route path="login" element={<Components.Login />} />
+          <Route path="signup" element={<Components.Signup />} />
+          <Route path="productpage" element={<Components.ProductPage />} />
+          <Route path="cart" element={<Components.Cart />} />
+          <Route path="payment" element={<Components.Payment />} />
+          <Route path="orders" element={<Components.Orders />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
+
 
 export default App
